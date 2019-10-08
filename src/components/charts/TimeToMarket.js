@@ -1,12 +1,10 @@
 import React from 'react'
 import {Line} from 'react-chartjs-2'
-import Trello from "../Trello";
-import mapValues from 'lodash/mapValues'
+import {sortByCompletedAt} from "../../trello/repository";
 
 const cardNames = (t, cards) => {
   return Promise
-    .all(Object.keys(cards).map(cardId => t.get(`cards/${cardId}`, {fields: 'name'})))
-    .then(namedCards => namedCards.map(namedCard => ({...namedCard, ...cards[namedCard.id]})))
+    .all(cards.map(card => t.get(`cards/${card.id}`, {fields: 'name'})))
 }
 
 const t = window.Trello;
@@ -47,7 +45,7 @@ class TimeToMarket extends React.Component {
                   pointHoverBorderWidth: 2,
                   pointRadius: 1,
                   pointHitRadius: 10,
-                  data: cards.map(card => card.timeToMarket)
+                  data: this.props.data.map(card => card.timeToMarket)
                 }
               ]
             }
@@ -58,9 +56,7 @@ class TimeToMarket extends React.Component {
 
   render() {
     const {lineChartData} = this.state
-    return <div>
-      <Line data={lineChartData}/>
-    </div>
+    return <Line data={lineChartData}/>
   }
 }
 
