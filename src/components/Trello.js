@@ -11,12 +11,20 @@ class Trello extends React.Component {
       loading: true,
     }
   }
-    componentDidMount() {
+
+  componentDidMount() {
+
+    if (!this.props.fetch) {
+      this.setState({data: null, loading: false})
+      return
+    }
+
     this.props
       .fetch(t)
       .then(data => {
         this.setState({data, loading: false})
       })
+
   }
 
   render() {
@@ -25,7 +33,7 @@ class Trello extends React.Component {
 
     return <div>
       {loading && <Loading/>}
-      {!loading && children(data, t)}
+      {!loading && children(t, data)}
     </div>
   }
 

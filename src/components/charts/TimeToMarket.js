@@ -1,38 +1,67 @@
 import React from 'react'
 import {Line} from 'react-chartjs-2'
+import Trello from "../Trello";
+import mapValues from 'lodash/mapValues'
 
-const data = {
-  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-  datasets: [
-    {
-      label: 'My First dataset',
-      fill: false,
-      lineTension: 0.1,
-      backgroundColor: 'rgba(75,192,192,0.4)',
-      borderColor: 'rgba(75,192,192,1)',
-      borderCapStyle: 'butt',
-      borderDash: [],
-      borderDashOffset: 0.0,
-      borderJoinStyle: 'miter',
-      pointBorderColor: 'rgba(75,192,192,1)',
-      pointBackgroundColor: '#fff',
-      pointBorderWidth: 1,
-      pointHoverRadius: 5,
-      pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-      pointHoverBorderColor: 'rgba(220,220,220,1)',
-      pointHoverBorderWidth: 2,
-      pointRadius: 1,
-      pointHitRadius: 10,
-      data: [65, 59, 80, 81, 56, 55, 40]
+const cardNames = (t, cards) => {
+  return Promise
+    .all(Object.keys(cards).map(cardId => t.get(`cards/${cardId}`, {fields: 'name'})))
+    .then(namedCards => namedCards.map(namedCard => ({...namedCard, ...cards[namedCard.id]})))
+}
+
+const t = window.Trello;
+
+class TimeToMarket extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      lineChartData: {},
     }
-  ]
-};
+  }
 
-function TimeToMarket() {
-  return <div>
-    <h1>Time to market</h1>
-    <Line data={data}/>
-  </div>;
+  componentDidMount() {
+    cardNames(t, this.props.data)
+      .then(cards => {
+        console.log(cards.map(card => card.name))
+          this.setState({
+            lineChartData: {
+              labels: cards.map(card => card.name),
+              datasets: [
+                {
+                  label: 'This must be the product Time To Market',
+                  fill: false,
+                  lineTension: 0.1,
+                  backgroundColor: 'rgba(75,192,192,0.4)',
+                  borderColor: 'rgba(75,192,192,1)',
+                  borderCapStyle: 'butt',
+                  borderDash: [],
+                  borderDashOffset: 0.0,
+                  borderJoinStyle: 'miter',
+                  pointBorderColor: 'rgba(75,192,192,1)',
+                  pointBackgroundColor: '#fff',
+                  pointBorderWidth: 1,
+                  pointHoverRadius: 5,
+                  pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+                  pointHoverBorderColor: 'rgba(220,220,220,1)',
+                  pointHoverBorderWidth: 2,
+                  pointRadius: 1,
+                  pointHitRadius: 10,
+                  data: cards.map(card => card.timeToMarket)
+                }
+              ]
+            }
+          })
+        }
+      )
+  }
+
+  render() {
+    const {lineChartData} = this.state
+    return <div>
+      <Line data={lineChartData}/>
+    </div>
+  }
 }
 
 export default TimeToMarket

@@ -7,7 +7,7 @@ import TimeToMarket from "./components/charts/TimeToMarket";
 function App() {
 
   return <Trello fetch={t => repository(t).getTimeToMarket()}>
-    {(data) => <TimeToMarket/>}
+    {(t, data) => <TimeToMarket data={data}/>}
   </Trello>
 }
 
