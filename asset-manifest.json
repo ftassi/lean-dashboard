@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/lean-dashboard/static/css/main.3237dd5a.chunk.css",
+    "main.js": "/lean-dashboard/static/js/main.1bacb7dd.chunk.js",
+    "main.js.map": "/lean-dashboard/static/js/main.1bacb7dd.chunk.js.map",
+    "runtime-main.js": "/lean-dashboard/static/js/runtime-main.d6ec5981.js",
+    "runtime-main.js.map": "/lean-dashboard/static/js/runtime-main.d6ec5981.js.map",
+    "static/js/2.9a580d51.chunk.js": "/lean-dashboard/static/js/2.9a580d51.chunk.js",
+    "static/js/2.9a580d51.chunk.js.map": "/lean-dashboard/static/js/2.9a580d51.chunk.js.map",
+    "index.html": "/lean-dashboard/index.html",
+    "precache-manifest.6d57fa042a395d364cf44d926cc8e25d.js": "/lean-dashboard/precache-manifest.6d57fa042a395d364cf44d926cc8e25d.js",
+    "service-worker.js": "/lean-dashboard/service-worker.js",
+    "static/css/main.3237dd5a.chunk.css.map": "/lean-dashboard/static/css/main.3237dd5a.chunk.css.map"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d6ec5981.js",
+    "static/js/2.9a580d51.chunk.js",
+    "static/css/main.3237dd5a.chunk.css",
+    "static/js/main.1bacb7dd.chunk.js"
+  ]
+}
