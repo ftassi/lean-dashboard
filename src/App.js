@@ -6,9 +6,11 @@ import TimeToMarket from "./components/charts/TimeToMarket";
 
 function App() {
 
-  return <Trello fetch={t => repository(t).getTimeToMarket()}>
-    {(t, data) => <TimeToMarket data={data}/>}
-  </Trello>
+  return <main>
+    <Trello fetch={t => repository(t).getTimeToMarket()}>
+      {(t, data) => <TimeToMarket data={data}/>}
+    </Trello>
+  </main>
 }
 
 export default App;
