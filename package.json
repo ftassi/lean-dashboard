@@ -7,7 +7,7 @@
     "chart.js": "^2.8.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "react": "^16.10.2",
     "react-chartjs-2": "^2.8.0",
     "react-dom": "^16.10.2",
